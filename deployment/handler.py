@@ -27,21 +27,6 @@ model = None
 preprocessor = None
 
 def load_from_s3(bucket, key):
-    """
-    Load a pickle file from S3.
-    
-    Parameters:
-    -----------
-    bucket : str
-        S3 bucket name
-    key : str
-        S3 object key
-        
-    Returns:
-    --------
-    object
-        Unpickled object
-    """
     try:
         logger.info(f"Loading {key} from S3 bucket {bucket}")
         response = s3_client.get_object(Bucket=bucket, Key=key)
@@ -54,14 +39,6 @@ def load_from_s3(bucket, key):
         raise
 
 def load_model_and_preprocessor():
-    """
-    Load model and preprocessor from S3.
-    
-    Returns:
-    --------
-    tuple
-        (model, preprocessor)
-    """
     global model, preprocessor
     
     if model is None:
@@ -73,19 +50,6 @@ def load_model_and_preprocessor():
     return model, preprocessor
 
 def prepare_data(data):
-    """
-    Prepare data for prediction using the preprocessor.
-    
-    Parameters:
-    -----------
-    data : list of dict
-        Input data
-        
-    Returns:
-    --------
-    numpy.ndarray
-        Processed features
-    """
     # Load preprocessor if not already loaded
     _, preprocessor = load_model_and_preprocessor()
     
@@ -98,21 +62,6 @@ def prepare_data(data):
     return X
 
 def predict(event, context):
-    """
-    Lambda handler for making a single prediction.
-    
-    Parameters:
-    -----------
-    event : dict
-        Lambda event
-    context : object
-        Lambda context
-        
-    Returns:
-    --------
-    dict
-        API response
-    """
     try:
         logger.info("Received prediction request")
         
@@ -169,21 +118,6 @@ def predict(event, context):
         }
 
 def batch_predict(event, context):
-    """
-    Lambda handler for making batch predictions.
-    
-    Parameters:
-    -----------
-    event : dict
-        Lambda event
-    context : object
-        Lambda context
-        
-    Returns:
-    --------
-    dict
-        API response
-    """
     try:
         logger.info("Received batch prediction request")
         
@@ -239,21 +173,6 @@ def batch_predict(event, context):
         }
 
 def info(event, context):
-    """
-    Lambda handler for getting model information.
-    
-    Parameters:
-    -----------
-    event : dict
-        Lambda event
-    context : object
-        Lambda context
-        
-    Returns:
-    --------
-    dict
-        API response
-    """
     try:
         logger.info("Received model info request")
         

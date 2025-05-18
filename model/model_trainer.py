@@ -9,25 +9,6 @@ from sklearn.metrics import accuracy_score
 logger = logging.getLogger(__name__)
 
 def train_xgboost_model(X_train, y_train, params, eval_set=None):
-    """
-    Train an XGBoost model for customer churn prediction.
-    
-    Parameters:
-    -----------
-    X_train : numpy.ndarray
-        Training features
-    y_train : numpy.ndarray
-        Training target
-    params : dict
-        Hyperparameters for the model
-    eval_set : list, optional
-        Evaluation set for early stopping
-        
-    Returns:
-    --------
-    xgboost.XGBClassifier
-        Trained XGBoost model
-    """
     try:
         logger.info("Training XGBoost model")
         
@@ -70,25 +51,6 @@ def train_xgboost_model(X_train, y_train, params, eval_set=None):
         raise
 
 def train_lightgbm_model(X_train, y_train, params, eval_set=None):
-    """
-    Train a LightGBM model for customer churn prediction.
-    
-    Parameters:
-    -----------
-    X_train : numpy.ndarray
-        Training features
-    y_train : numpy.ndarray
-        Training target
-    params : dict
-        Hyperparameters for the model
-    eval_set : list, optional
-        Evaluation set for early stopping
-        
-    Returns:
-    --------
-    lightgbm.LGBMClassifier
-        Trained LightGBM model
-    """
     try:
         logger.info("Training LightGBM model")
         
